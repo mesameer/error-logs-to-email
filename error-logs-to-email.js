@@ -106,7 +106,16 @@ const sendLogsByEmail = async (mailOptions, logs) => {
     from: mailOptions.user,
     to: mailOptions.to,
     subject: mailOptions.subject,
-    text: JSON.stringify(logs, null, 2),
+    html: `<p>Dear User,</p>
+            <p>Attached, you will find the error logs for the last hour in a neatly formatted JSON file.</p>
+            <p>Please don't hesitate to contact us if you have any questions or concerns.</p>
+            <p>Thank you!</p>`,
+    attachments: [
+      {
+        filename: 'error_logs.json',
+        content: JSON.stringify(logs, null, 2),
+      },
+    ],
   });
 }
 
@@ -121,6 +130,9 @@ const logger = (executeAfterInSec = 60, mailSettings) => {
       transportInfo
     ]
   });
+
+  // logger.error("Error 1");
+  // logger.error("Error 2");
 
   scheduler(executeAfterInSec, mailSettings);
 

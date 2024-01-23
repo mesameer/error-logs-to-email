@@ -9,7 +9,7 @@ const mailOptions = {
   subject: 'Error Logs for the Last Hour',
 };
 
-const executeAfterSec = 1 * 60 * 60; // 1 Hour
+const executeAfterSec = 3600; // 1 Hour
 
 global.mailLogger = errorLogsToEmail.logger(executeAfterSec, mailOptions);
 

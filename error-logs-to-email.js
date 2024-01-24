@@ -106,10 +106,7 @@ const sendLogsByEmail = async (mailOptions, logs) => {
     from: mailOptions.user,
     to: mailOptions.to,
     subject: mailOptions.subject,
-    html: `<p>Dear User,</p>
-            <p>Attached, you will find the error logs for the last hour in a neatly formatted JSON file.</p>
-            <p>Please don't hesitate to contact us if you have any questions or concerns.</p>
-            <p>Thank you!</p>`,
+    html: mailOptions.html,
     attachments: [
       {
         filename: 'error_logs.json',
